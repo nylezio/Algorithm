@@ -12,9 +12,9 @@ public class Merge_interview10_1 {
             System.arraycopy(B, 0, A, 0, A.length);
             return;
         }
-        if (A[m-1] < B[0]){
+        if (A[m - 1] < B[0]){
             for (int i = m;i < A.length; i++){
-                A[i] =B[i - m];
+                A[i] = B[i - m];
             }
             return;
         }

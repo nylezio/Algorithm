@@ -2,7 +2,6 @@
 //滑动窗口实现
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FiindContinuousSequence_57 {
