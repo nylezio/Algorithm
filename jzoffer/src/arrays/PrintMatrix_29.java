@@ -1,46 +1,64 @@
 package arrays;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
+/**
+ * 顺时针打印矩阵
+ * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
+ *
+ * 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+ * 输出：[1,2,3,6,9,8,7,4,5]
+ *
+ * 链接：https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof
+ */
 public class PrintMatrix_29 {
-    private static ArrayList<Integer> printMatrix(int [][] matrix) {
-        ArrayList<Integer> result = new ArrayList<>();
-        if (matrix == null || matrix.length == 0){
-            return result;
+
+    public static int[] spiralOrder(int[][] matrix) {
+        if (matrix.length == 0) {
+            return new int[]{};
         }
-        int start = 0;
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-        while (rows > start * 2 && cols > start * 2){
-            int endX = cols - 1 - start;
-            int endY = rows - 1 - start;
-            for (int i = start; i <= endX; i++) {
-                result.add(matrix[start][i]);
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int[] ans = new int[row * col];
+        int top = 0;
+        int right = col - 1;
+        int bottom = row - 1;
+        int left = 0;
+        int cur = 0;
+        while (cur < row * col) {
+            for (int i = left; i <= right; i++) {
+                ans[cur++] = matrix[top][i];
             }
-            if (start < endY){
-                for (int i = start + 1; i <= endY; i++) {
-                    result.add(matrix[i][endX]);
-                }
+            if (cur >= row * col) {
+                break;
             }
-            if (start < endX && start < endY){
-                for (int i = endX - 1; i >= start; i--) {
-                    result.add(matrix[endY][i]);
-                }
+            top++;
+            for (int i = top; i <= bottom; i++) {
+                ans[cur++] = matrix[i][right];
             }
-            if (start < endX && start < endY - 1){
-                for (int i = endY - 1; i >= start + 1; --i) {
-                    result.add(matrix[i][start]);
-                }
+            if (cur >= row * col) {
+                break;
             }
-            ++start;
+            right--;
+            for (int i = right; i >= left; i--) {
+                ans[cur++] = matrix[bottom][i];
+            }
+            if (cur >= row * col) {
+                break;
+            }
+            bottom--;
+            for (int i = bottom; i >= top; i--) {
+                ans[cur++] = matrix[i][left];
+            }
+            left++;
         }
-        return result;
+        return ans;
     }
 
 
     public static void main(String[] args) {
         int[][] matrix = {{1,2},{3,4},{5,6},{7,8},{9,10}};
-        ArrayList res = printMatrix(matrix);
-        System.out.println(res);
+        int[] ans = spiralOrder(matrix);
+        System.out.println(Arrays.toString(ans));
     }
 }
