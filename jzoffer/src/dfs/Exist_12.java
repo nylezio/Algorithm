@@ -27,7 +27,9 @@ public class Exist_12 {
         char[] words = word.toCharArray();
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board[0].length; j++) {
-                if (dfs(board, words, i, j, 0)) {return true;}
+                if (dfs(board, words, i, j, 0)) {
+                    return true;
+                }
             }
         }
         return false;
