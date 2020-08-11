@@ -41,4 +41,40 @@ public class MinArray_11 {
         return numbers[left];
 
     }
+
+    public static int min(int[] numbers) {
+        int n = numbers.length;
+        int i = 0;
+        int j = n - 1;
+        // while (i < j) {
+        //     int mid = i + (j - i) / 2;
+        //     if (numbers[mid] > numbers[j]) {
+        //         i = mid + 1;
+        //     } else if (numbers[mid] < numbers[j]){
+        //         j = mid;
+        //     } else {
+        //         j--;
+        //     }
+        // }
+        // return numbers[i];
+        int ans = numbers[j];
+        while (i <= j) {
+            int mid = i + (j - i) / 2;
+            ans = Math.min(ans, numbers[mid]);
+            if (numbers[mid] < numbers[j]) {
+                j = mid - 1;
+
+            } else if (numbers[mid] > numbers[j]) {
+                i = mid + 1;
+            } else {
+                j--;
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int min = min(new int[]{6, 7, 1, 3, 5,});
+        System.out.println(min);
+    }
 }
